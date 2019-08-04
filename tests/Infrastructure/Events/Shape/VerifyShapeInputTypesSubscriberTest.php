@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class VerifyShapeInputTypesSubscriberTest extends TestCase
 {
-    public function testThatExceptionIsThrownWhenColorIsUnknown(): void
+    public function testThatExceptionIsThrownWhenTypeIsInvalid(): void
     {
         $listener = new VerifyShapeInputTypesSubscriber();
         $input = new ShapeInput([
