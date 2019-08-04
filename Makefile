@@ -27,6 +27,7 @@ start:
 	@docker-compose up -d
 	@printf "$(INFO_COLOR)==> Installing dependencies if there are any $(NO_COLOR)\n"
 	@docker-compose exec cli composer install
+	@docker-compose exec cli composer dump-autoload -o
 
 stop:
 	@printf "$(INFO_COLOR)==> Stopping containers$(NO_COLOR)\n"
