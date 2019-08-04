@@ -18,8 +18,10 @@ To be able to use this application, [Docker](https://www.docker.com/) is require
 To install the application, clone this repo, cd to the folder, and run **make install**
 
 ## Usage
-Once the application is installed, go to your terminal, and run **make start** to start the application, then run the following command: **make shape** to start drafting shape(s)!.
+Once the application is installed, go to your terminal, and run **make start** to start the application.
+Once the application is running, run the following command: **make shape** to start drafting shape(s).
 You will be asked how you want to configure your shape and what kind of output you expect
+
 ![Usage](./docs/assets/usage.png)
 
 ### STDOUT Pattern
