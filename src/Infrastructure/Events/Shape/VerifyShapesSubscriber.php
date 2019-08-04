@@ -2,8 +2,8 @@
 
 namespace GraphicEditor\Infrastructure\Events\Shape;
 
+use GraphicEditor\Domain\Shape\Exception\ShapeIsNotSupportedException;
 use GraphicEditor\Infrastructure\Events\AbstractListener;
-use InvalidArgumentException;
 
 final class VerifyShapesSubscriber extends AbstractListener
 {
@@ -17,7 +17,12 @@ final class VerifyShapesSubscriber extends AbstractListener
         $this->shapes = $shapes;
     }
 
-    // verifies the integrity of the input
+    /**
+     * verifies the integrity of the input
+     *
+     * @param ShapeInputWasReceived $event
+     * @throws ShapeIsNotSupportedException
+     */
     public function onShapeInputWasReceived(ShapeInputWasReceived $event): void
     {
         $this->verifyShape(
@@ -25,14 +30,15 @@ final class VerifyShapesSubscriber extends AbstractListener
         );
     }
 
-    // checks if the given value is supported by the app
+    /**
+     * checks if the given value is supported by the app
+     * @param string $shape
+     * @throws ShapeIsNotSupportedException
+     */
     private function verifyShape(string $shape): void
     {
         if (!array_key_exists($shape, $this->shapes)) {
-            throw new InvalidArgumentException(sprintf(
-                'the following shape is not supported: %s',
-                $shape
-            ));
+            throw new ShapeIsNotSupportedException($shape);
         }
     }
 }
