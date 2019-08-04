@@ -2,7 +2,6 @@
 
 namespace GraphicEditor\Infrastructure\Events\Shape;
 
-use GraphicEditor\Domain\Shape\Exception\ShapeIsNotSupportedException;
 use GraphicEditor\Infrastructure\Events\AbstractListener;
 use GraphicEditor\Presentation\Console\StdOut\Shape\Exception\OutputIsNotSupportedException;
 
