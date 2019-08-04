@@ -13,7 +13,7 @@ help:
 	@echo "  hijack                   - Interactive console inside the application container"
 	@echo "  help                     - Shows this dialog."
 	@echo "  shape                    - Starts the process of drafting a shape"
-	@eco "   test                     - Runs the test suite"
+	@echo "  test                     - Runs the test suite"
 	@exit 0
 
 install: start composer-install
