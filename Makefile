@@ -13,6 +13,7 @@ help:
 	@echo "  hijack                   - Interactive console inside the application container"
 	@echo "  help                     - Shows this dialog."
 	@echo "  shape                    - Starts the process of drafting a shape"
+	@eco "   test                     - Runs the test suite"
 	@exit 0
 
 install: start composer-install
@@ -42,3 +43,7 @@ hijack:
 shape:
 	@printf "$(INFO_COLOR)==> Initializing $(APP_CONTAINER_NAME) application$(NO_COLOR)\n"
 	@docker-compose exec $(APP_CONTAINER_NAME) php bin/app
+
+test:
+	@printf "$(INFO_COLOR)==> Initializing $(APP_CONTAINER_NAME) tests$(NO_COLOR)\n"
+	@docker-compose exec $(APP_CONTAINER_NAME) vendor/bin/phpunit
