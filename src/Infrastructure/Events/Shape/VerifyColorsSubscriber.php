@@ -2,8 +2,8 @@
 
 namespace GraphicEditor\Infrastructure\Events\Shape;
 
+use GraphicEditor\Domain\Shape\Exception\ColorIsNotSupportedException;
 use GraphicEditor\Infrastructure\Events\AbstractListener;
-use InvalidArgumentException;
 
 final class VerifyColorsSubscriber extends AbstractListener
 {
@@ -17,7 +17,12 @@ final class VerifyColorsSubscriber extends AbstractListener
         $this->colors = $colors;
     }
 
-    // verifies the integrity of the input
+    /**
+     * verifies the integrity of the input
+     *
+     * @param ShapeInputWasReceived $event
+     * @throws ColorIsNotSupportedException
+     */
     public function onShapeInputWasReceived(ShapeInputWasReceived $event): void
     {
         $this->verifyColor(
@@ -25,14 +30,16 @@ final class VerifyColorsSubscriber extends AbstractListener
         );
     }
 
-    // checks if the given value is supported by the app
+    /**
+     * checks if the given value is supported by the app
+     *
+     * @param string $color
+     * @throws ColorIsNotSupportedException
+     */
     private function verifyColor(string $color): void
     {
         if (!array_key_exists($color, $this->colors)) {
-            throw new InvalidArgumentException(sprintf(
-                'the following color is not supported: %s',
-                $color
-            ));
+            throw new ColorIsNotSupportedException($color);
         }
     }
 }
