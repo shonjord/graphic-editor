@@ -2,10 +2,10 @@
 
 namespace Test\Infrastructure\Events\Shape;
 
-use GraphicEditor\Domain\Shape\Exception\ShapeIsNotSupportedException;
 use GraphicEditor\Infrastructure\Events\Shape\ShapeInputWasReceived;
 use GraphicEditor\Infrastructure\Events\Shape\VerifyShapeOutputsSubscriber;
 use GraphicEditor\Infrastructure\Reader\Console\ShapeInput;
+use GraphicEditor\Presentation\Console\StdOut\Shape\Exception\OutputIsNotSupportedException;
 use PHPUnit\Framework\TestCase;
 
 final class VerifyShapeOutputsSubscriberTest extends TestCase
@@ -19,7 +19,7 @@ final class VerifyShapeOutputsSubscriberTest extends TestCase
             ]
         ]);
 
-        $this->expectException(ShapeIsNotSupportedException::class);
+        $this->expectException(OutputIsNotSupportedException::class);
         $listener->listen(new ShapeInputWasReceived($input));
     }
 }

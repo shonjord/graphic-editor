@@ -4,6 +4,7 @@ namespace GraphicEditor\Infrastructure\Events\Shape;
 
 use GraphicEditor\Domain\Shape\Exception\ShapeIsNotSupportedException;
 use GraphicEditor\Infrastructure\Events\AbstractListener;
+use GraphicEditor\Presentation\Console\StdOut\Shape\Exception\OutputIsNotSupportedException;
 
 final class VerifyShapeOutputsSubscriber extends AbstractListener
 {
@@ -21,7 +22,7 @@ final class VerifyShapeOutputsSubscriber extends AbstractListener
      * verifies the integrity of the input
      *
      * @param ShapeInputWasReceived $event
-     * @throws ShapeIsNotSupportedException
+     * @throws OutputIsNotSupportedException
      */
     public function onShapeInputWasReceived(ShapeInputWasReceived $event): void
     {
@@ -34,12 +35,12 @@ final class VerifyShapeOutputsSubscriber extends AbstractListener
      * checks if the given value is supported by the app
      *
      * @param string $output
-     * @throws ShapeIsNotSupportedException
+     * @throws OutputIsNotSupportedException
      */
     private function verifyColor(string $output): void
     {
         if (!in_array($output, $this->outputs)) {
-            throw new ShapeIsNotSupportedException($output);
+            throw new OutputIsNotSupportedException($output);
         }
     }
 }
