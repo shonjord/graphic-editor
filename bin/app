@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+require_once __DIR__ . '/../config/config.php';
+
+use GraphicEditor\Application\Services\Shape\ShapeTracer;
+use GraphicEditor\Domain\Shape\Factory\ShapeFactory;
+use GraphicEditor\Infrastructure\Events\Dispatcher\EventDispatcher;
+use GraphicEditor\Infrastructure\Reader\Console\ShapeInputReader;
+use GraphicEditor\Presentation\Console\Applications\GraphicEditor;
+use GraphicEditor\Presentation\Console\ConsoleInterface;
+
+// making sure that the given application complies with a console application
+(function (ConsoleInterface $app): void {
+    $app->run();
+})(new GraphicEditor(
+        new ShapeFactory($config->shapes),
+        new ShapeInputReader(new EventDispatcher($config->events), $config->options),
+        new ShapeTracer($config->stdout)
+));
