@@ -3,8 +3,8 @@
 namespace GraphicEditor\Presentation\Console\StdOut\Shape\Pattern;
 
 use GraphicEditor\Domain\Shape\ShapeInterface;
-use GraphicEditor\Presentation\Console\StdOut\StdOutInterface;
 use GraphicEditor\Presentation\Console\StdOut\Shape\AbstractShapeStdOut;
+use GraphicEditor\Presentation\Console\StdOut\StdOutInterface;
 
 final class TrianglePattern extends AbstractShapeStdOut implements StdOutInterface
 {
