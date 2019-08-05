@@ -22,12 +22,11 @@ final class CirclePattern extends AbstractShapeStdOut implements StdOutInterface
 
         for ($i = 0; $i <= 2 * $radius; $i++) {
             for ($j = 0; $j <= 2 * $radius; $j++) {
-                $this->distance = sqrt(($i - $radius) *
-                    ($i - $radius) +
-                    ($j - $radius) *
-                    ($j - $radius));
+                $this->changeDistance(sqrt(
+                    ($i - $radius) * ($i - $radius) + ($j - $radius) * ($j - $radius)
+                ));
 
-                if ($this->distance > $radius - 0.5 && $this->distance < $radius + 0.5) {
+                if ($this->distanceIsHigherThan($radius - 0.5) && $this->distanceIsLowerThan($radius + 0.5)) {
                     $this->write($this->colorOf($shape)."*".$this->clearColor());
                 } else {
                     $this->write(" ");
@@ -35,5 +34,23 @@ final class CirclePattern extends AbstractShapeStdOut implements StdOutInterface
             }
             $this->writeEmptyLine();
         }
+    }
+
+    // changes the distance of the circle
+    private function changeDistance(float $value): void
+    {
+        $this->distance = $value;
+    }
+
+    // verifies if the given value is higher than the current distance
+    private function distanceIsHigherThan(float $value): bool
+    {
+        return $this->distance > $value;
+    }
+
+    // verifies if the given value is lower than the current distance
+    private function distanceIsLowerThan(float $value): bool
+    {
+        return $this->distance < $value;
     }
 }
