@@ -37,8 +37,8 @@ $config = (object) [
     ],
     'stdout' => [
         'pattern' => [
-            'circle' => new TrianglePattern($colors),
-            'triangle' => new CirclePattern($colors)
+            'circle' => new CirclePattern($colors),
+            'triangle' => new TrianglePattern($colors)
         ],
         'image' => [
             'circle' => new CircleImage($colors),

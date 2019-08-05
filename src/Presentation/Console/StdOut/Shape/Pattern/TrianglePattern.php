@@ -9,29 +9,22 @@ use GraphicEditor\Presentation\Console\StdOut\Shape\AbstractShapeStdOut;
 final class TrianglePattern extends AbstractShapeStdOut implements StdOutInterface
 {
     /**
-     * @var float
-     */
-    private $distance;
-
-    /**
      * {@inheritDoc}
      */
     public function display(ShapeInterface $shape): void
     {
-        $radius = $shape->getSize()->getValue();
+        $n = $shape->getSize()->getValue();
+        $k = 2 * $n - 2;
 
-        for ($i = 0; $i <= 2 * $radius; $i++) {
-            for ($j = 0; $j <= 2 * $radius; $j++) {
-                $this->distance = sqrt(($i - $radius) *
-                    ($i - $radius) +
-                    ($j - $radius) *
-                    ($j - $radius));
-
-                if ($this->distance > $radius - 0.5 && $this->distance < $radius + 0.5) {
-                    $this->write($this->colorOf($shape)."*".$this->clearColor());
-                } else {
-                    $this->write(" ");
-                }
+        for ($i = 0; $i < $n; $i++) {
+            for ($j = 0; $j < $k; $j++) {
+                $this->write(" ");
+            }
+            $k = $k - 1;
+            for ($j = 0; $j <= $i; $j++) {
+                $this->write(
+                    $this->colorOf($shape)."* ".$this->clearColor()
+                );
             }
             $this->writeEmptyLine();
         }
